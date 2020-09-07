@@ -116,7 +116,7 @@ public class Controller implements Initializable {
         insertedDiscArray [row][col] = disc;
         insertedDiscPane.getChildren().add(disc);
         disc.setTranslateX(col * (CIRCLE_DIAMETER + 5) + CIRCLE_DIAMETER / 4);
-        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(1), disc);
+        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(0.7), disc);
         translateTransition.setToY(row * (CIRCLE_DIAMETER + 5) + CIRCLE_DIAMETER / 4);
         int currentRow = row;
         translateTransition.setOnFinished(event -> {
@@ -229,12 +229,10 @@ public class Controller implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setNamesButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                PLAYER_ONE = playerOneTextField.getText();
-                PLAYER_TWO = playerTwoTextField.getText();
-            }
+        setNamesButton.setOnAction(event -> {
+            PLAYER_ONE = playerOneTextField.getText();
+            PLAYER_TWO = playerTwoTextField.getText();
+            playerNameLable.setText(isPlayerOneTurn ? PLAYER_ONE : PLAYER_TWO);
         });
     }
 }
